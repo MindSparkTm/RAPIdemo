@@ -76,8 +76,10 @@ sent to the Highcharts library which demonstrates the Step Function through a Gr
 <br>
 
 <br />
-<button id="submitbutton" type="button">Submit Request</button>
+<button id="submitbutton" type="button">Submit Request</button><img src="spinner.gif" id="ajaxspinner" />
+
 <br/>
+
 
 <div id="container"></div>
 
@@ -88,9 +90,9 @@ sent to the Highcharts library which demonstrates the Step Function through a Gr
 <script type="text/javascript">
     ocpu.seturl("https://cors-anywhere.herokuapp.com/https://public.opencpu.org/ocpu/library/utils/R")
 
-
+     $("#ajaxspinner").hide();
     $("#submitbutton").on("click", function() {
-
+     $("#ajaxspinner").show();
         var did = $("#dataid").val();
 
         //arguments
@@ -116,7 +118,7 @@ sent to the Highcharts library which demonstrates the Step Function through a Gr
                 }, function (output) {
                     console.log(output.y);
 
-
+     $("#ajaxspinner").hide();
 
                     $("code").text(output.y.join("\n"));
 

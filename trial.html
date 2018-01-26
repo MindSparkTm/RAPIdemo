@@ -54,31 +54,16 @@ sent to the Highcharts library which demonstrates the Step Function through a Gr
 <script src="https://code.highcharts.com/modules/series-label.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script type="text/javascript">
-    ocpu.seturl("https://public.opencpu.org/ocpu/library/utils/R")
+    ocpu.seturl("https://cors-anywhere.herokuapp.com/https://public.opencpu.org/ocpu/library/utils/R")
 
 
     $("#submitbutton").on("click", function() {
 
         var did = $("#dataid").val();
-
-        //arguments
-
-
         var result;
         result = did.split(",");
         console.log(result);
-        
-
-        //disable the button during upload
-
-
-        //perform the request
-        
-
-
-
-
-                ocpu.seturl("https://cors-anywhere.herokuapp.com/https://public.opencpu.org/ocpu/library/stats/R")
+        ocpu.seturl("https://cors-anywhere.herokuapp.com/https://public.opencpu.org/ocpu/library/stats/R")
                 var req = ocpu.rpc("lowess", {
                     x: result
                 }, function (output) {
@@ -124,30 +109,9 @@ sent to the Highcharts library which demonstrates the Step Function through a Gr
                 });
 
 
-
-
-
-
-                //optional
-               
-
-
-
-
-
-
-            
-
-
-
-
-
-    });
-
-
-
-
+  });
 </script>
+</html>
 
 
 

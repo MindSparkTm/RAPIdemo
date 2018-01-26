@@ -1,12 +1,13 @@
-
 <html>
-<center><h1>A Very Simple DPU demo app for Marble MicroInsurance Challenge using OpenCPU API of R</h1></center>
-<h2>This example calls the lowess function in R, to smooth a bunch of values. This can be useful to remove outliers from noisy data.</h2>
-
-<body>
-<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="https://cdn.opencpu.org/opencpu-0.4.js"></script>
+<head>
+<title>Data Processing Unit of OpenCPU R API Demo App</title>
 <style>
+html{
+  font-family: "Helvetica Neue", sans-serif;
+  width:100%;
+  color:#666666;
+  text-align:center;
+}
     #container {
         min-width: 310px;
         max-width: 800px;
@@ -15,18 +16,49 @@
     }
   ul {
     border: 1px solid black;
-    margin-right:100px;
+    margin-right:200px;
+	margin-left : 200px;
     float:right;
 }
-} 
+input{
+		width:200px;
+		-moz-border-radius: 15px;
+		border-radius: 15px;
+		border:solid 1px black;
+		padding:5px;
+}
+.bdy{
+		text-align : center ;
+		font-family : arial;
+		font-size:22;
+		line-height:200%;}
+button{
+  display:inline-block;
+  vertical-align:middle;
+  border-radius:30px;
+  margin:.20rem;
+  font-size: 1rem;
+  color:#666666;
+  background:   #ffffff;
+  border:1px solid #666666;  
+}
+
+button:hover{
+  border:1px solid #666666;
+  background:#666666;
+  color:#ffffff;
+}
 	
 </style>
 
-</body>
 
-<br />
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdn.opencpu.org/opencpu-0.4.js"></script>
 
-<b>
+<center><h1 style="color:blue;">A Very Simple DPU demo app for Marble MicroInsurance Challenge using OpenCPU API of R. BY SURAJIT DAS</h1></center>
+<h2>This example calls the lowess function in R, to smooth a bunch of values. This can be useful to remove outliers from noisy data.</h2>
 
 <input type ="text" id ="dataid"></input> &nbsp; &nbsp; &nbsp; Fill in your numerical values separated by a comma e.g (1,2,3,999,0,5,3). 
 <div id = "instructions">
@@ -60,10 +92,25 @@ sent to the Highcharts library which demonstrates the Step Function through a Gr
     $("#submitbutton").on("click", function() {
 
         var did = $("#dataid").val();
+
+        //arguments
+
+
         var result;
         result = did.split(",");
         console.log(result);
-        ocpu.seturl("https://cors-anywhere.herokuapp.com/https://public.opencpu.org/ocpu/library/stats/R")
+        
+
+        //disable the button during upload
+
+
+        //perform the request
+        
+
+
+
+
+                ocpu.seturl("https://cors-anywhere.herokuapp.com/https://public.opencpu.org/ocpu/library/stats/R")
                 var req = ocpu.rpc("lowess", {
                     x: result
                 }, function (output) {
@@ -107,12 +154,17 @@ sent to the Highcharts library which demonstrates the Step Function through a Gr
                     });
 
                 });
+				
+				
+                //optional
+               
 
 
-  });
+ });
+
+
+
+
 </script>
+</body>
 </html>
-
-
-
-

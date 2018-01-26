@@ -1,0 +1,154 @@
+
+<html>
+<center><h1>A Very Simple DPU demo app for Marble MicroInsurance Challenge using OpenCPU API of R</h1></center>
+<h2>This example calls the lowess function in R, to smooth a bunch of values. This can be useful to remove outliers from noisy data.</h2>
+
+<body>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://cdn.opencpu.org/opencpu-0.4.js"></script>
+<style>
+    #container {
+        min-width: 310px;
+        max-width: 800px;
+        height: 400px;
+        margin: 0 auto
+    }
+  ul {
+    border: 1px solid black;
+    margin-right:100px;
+    float:right;
+}
+} 
+	
+</style>
+
+</body>
+
+<br />
+
+<b>
+
+<input type ="text" id ="dataid"></input> &nbsp; &nbsp; &nbsp; Fill in your numerical values separated by a comma e.g (1,2,3,999,0,5,3). 
+<div id = "instructions">
+<ul>
+<p>Below are instructions to follow when using this DPU</p>
+<li>This simple Demo application uses the OpenCPU API of R</li>
+<li> The application gets data from the textbox and calls the Lowess Function library in R</li>
+<li>The front end is built using HTML, CSS And JQuery</li>
+<li>The R function returns the result in a callback. The response data is then 
+sent to the Highcharts library which demonstrates the Step Function through a Graph
+</li>
+</ul>
+</div>
+
+<br>
+
+<br />
+<button id="submitbutton" type="button">Submit Request</button>
+<br/>
+
+<div id="container"></div>
+
+<pre><code id="output"></code></pre>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script type="text/javascript">
+    ocpu.seturl("http://public.opencpu.org/ocpu/library/utils/R")
+
+
+    $("#submitbutton").on("click", function() {
+
+        var did = $("#dataid").val();
+
+        //arguments
+
+
+        var result;
+        result = did.split(",");
+        console.log(result);
+        
+
+        //disable the button during upload
+
+
+        //perform the request
+        
+
+
+
+
+                ocpu.seturl("https://cors-anywhere.herokuapp.com/http://public.opencpu.org/ocpu/library/stats/R")
+                var req = ocpu.rpc("lowess", {
+                    x: result
+                }, function (output) {
+                    console.log(output.y);
+
+
+
+                    $("code").text(output.y.join("\n"));
+
+
+
+                    Highcharts.chart('container', {
+                        title: {
+                            text: 'Step line types, with null values in the series'
+                        },
+                        xAxis: {
+                            categories: result,
+                            title: {
+                                enabled: true,
+                                text: 'Initial Values',
+                                style: {
+                                    fontWeight: 'normal'
+                                }
+                            }
+                        },
+
+                        yAxis:{
+
+                            title:{
+
+                                text:'Smoothed Values'
+                            }
+
+                        },
+                        series: [{
+                            data: output.y,
+                            step: 'right',
+                            name: 'Right'
+                        }]
+
+                    });
+
+                });
+
+
+
+
+
+
+                //optional
+               
+
+
+
+
+
+
+            
+
+
+
+
+
+    });
+
+
+
+
+</script>
+
+
+
+
